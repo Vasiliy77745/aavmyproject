@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import math
 def print_type(var):
     print(type(var))
