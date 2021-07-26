@@ -50,9 +50,9 @@ def format_with_fstring(data: Metrics):
 
 
 def format_with_format(data: Metrics):
-    pid = data.agent.split(".", 1)[1]
-    form = "[{a}] CPU #7: {b}%, Memory used: {c}, Load avg: {d}".format(a=pid, b=data.cpu_data[7], c=data.memory_used,
-                                                                        d=round(data.load_avg, 2))
+    p_id = data.agent.split(".", 1)[1]
+    form = "[{pid}] CPU #7: {cpu}%, Memory used: {mem}, Load avg: {load:.02f}".format(pid=p_id, cpu=data.cpu_data[7], mem=data.memory_used,
+                                                                        load=data.load_avg)
     return "{:->64}".format(form)
     #return "{:->64}".format("[{a}] CPU #7: {b}%, Memory used: {c}, Load avg: {d}".format(a=pid, b=data.cpu_data[7], c=data.memory_used,
      #                                                                   d=round(data.load_avg, 2)))
@@ -91,7 +91,7 @@ def format_with_percent(data: Metrics):
     #a = ("[0x%x] CPU #7: %d%%, Memory used: %d, Load avg: %.02f" % (
     #data.agent_address, data.cpu_data[7], data.memory_used, data.load_avg)).rjust(64, " ")
     #return a
-    form_str = "[0x%x] CPU #7: %d%%, Memory used: %d, Load avg: %.02f"
+    form_str = "[%#x] CPU #7: %d%%, Memory used: %d, Load avg: %.02f"
     res_data = (data.agent_address, data.cpu_data[7], data.memory_used, data.load_avg)
     f_data = form_str % res_data
     return "%64s" % f_data
