@@ -121,6 +121,7 @@ class DenyEverythingStartsFrom(BaseRule):
         super().__init__()
         self.starts_from = starts_from
     def check(self, item) -> bool:
+        #if isinstance(starts_from, str):
         if not item.startswith(self.starts_from):
             return self.allow(self.allow_reason)
         else:
